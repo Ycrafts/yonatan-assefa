@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function HomeAbout() {
   return (
     <section id="about" className="relative py-20 lg:py-32">
@@ -7,27 +9,14 @@ export function HomeAbout() {
         <div className="flex flex-col items-start gap-12 md:flex-row md:gap-10 lg:gap-20">
           <div className="relative w-full flex-1 self-stretch">
             <div className="about-image relative h-full w-full min-h-[400px] md:min-h-[500px] rounded-2xl bg-muted overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent-magenta/10 to-accent-amber/20" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center space-y-2">
-                  <div className="w-24 h-24 mx-auto rounded-full bg-muted-foreground/10 flex items-center justify-center">
-                    <svg
-                      className="w-12 h-12 text-muted-foreground/40"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-sm text-muted-foreground/60">Your Photo Here</p>
-                </div>
-              </div>
+              <Image
+                src="/images/me.png"
+                alt="Yonatan Assefa"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent-magenta/5 to-accent-amber/10" />
             </div>
           </div>
 
