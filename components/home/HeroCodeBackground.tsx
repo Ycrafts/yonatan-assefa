@@ -199,6 +199,7 @@ export function HeroCodeBackground() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isLowEndDevice = (navigator.hardwareConcurrency ?? 8) <= 4;
     const isPerfMode = prefersReducedMotion || isLowEndDevice;
+    const canUseHoverReveal = !isMobile && !isPerfMode;
     const FPS_INTERVAL = isMobile ? 1000 / 15 : 1000 / 60;
 
     let rafId = 0;
@@ -767,6 +768,7 @@ export function HeroCodeBackground() {
     let nearText = false;
 
     const onMouseMove = (e: MouseEvent) => {
+      if (!canUseHoverReveal) return;
       if (!revealDone) return;
       const rect = dim.getBoundingClientRect();
       mousePos.x = e.clientX - rect.left;
@@ -795,6 +797,7 @@ export function HeroCodeBackground() {
     };
 
     const onMouseLeave = () => {
+      if (!canUseHoverReveal) return;
       mousePos.x = -1000;
       mousePos.y = -1000;
       if (nearText) {
@@ -807,7 +810,7 @@ export function HeroCodeBackground() {
       }
     };
 
-    if (!isMobile && heroEl) {
+    if (canUseHoverReveal && heroEl) {
       heroEl.addEventListener("mousemove", onMouseMove);
       heroEl.addEventListener("mouseleave", onMouseLeave);
     }
