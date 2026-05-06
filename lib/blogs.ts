@@ -1,4 +1,5 @@
 import { supabase } from "./supabase";
+import { unstable_noStore as noStore } from "next/cache";
 import type { Database } from "./database.types";
 import type { Blog } from "../types/blog";
 
@@ -20,6 +21,7 @@ function mapBlogRow(row: BlogRow): Blog {
 }
 
 export async function getFeaturedBlogs(): Promise<Blog[]> {
+    noStore();
     const { data, error } = await supabase
         .from("blogs")
         .select("*")
@@ -36,6 +38,7 @@ export async function getFeaturedBlogs(): Promise<Blog[]> {
 }
 
 export async function getAllBlogs(): Promise<Blog[]> {
+    noStore();
     const { data, error } = await supabase
         .from("blogs")
         .select("*")
@@ -50,6 +53,7 @@ export async function getAllBlogs(): Promise<Blog[]> {
 }
 
 export async function getBlogBySlug(slug: string): Promise<Blog | null> {
+    noStore();
     const { data, error } = await supabase
         .from("blogs")
         .select("*")
