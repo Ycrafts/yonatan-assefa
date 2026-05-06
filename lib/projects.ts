@@ -81,8 +81,12 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         .single();
 
     if (error || !data) {
-        console.error("Error fetching project:", error);
-        return null;
+        const code = (error as any)?.code as string | undefined;
+        if (code === "PGRST116") {
+            return null;
+        }
+        console.error("Error fetching project:", { slug, error });
+        throw new Error(`Failed to fetch project '${slug}'`);
     }
 
     const project: ProjectRow = data;

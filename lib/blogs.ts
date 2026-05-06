@@ -56,9 +56,13 @@ export async function getBlogBySlug(slug: string): Promise<Blog | null> {
         .eq("slug", slug)
         .single();
 
-    if (error) {
-        console.error("Error fetching blog by slug:", error);
-        return null;
+    if (error || !data) {
+        const code = (error as any)?.code as string | undefined;
+        if (code === "PGRST116") {
+            return null;
+        }
+        console.error("Error fetching blog by slug:", { slug, error });
+        throw new Error(`Failed to fetch blog '${slug}'`);
     }
 
     return mapBlogRow(data);
