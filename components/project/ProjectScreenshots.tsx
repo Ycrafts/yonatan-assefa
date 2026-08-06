@@ -14,7 +14,11 @@ interface ProjectScreenshotsProps {
   projectTitle: string;
 }
 
-type ImageInfo = { src: string; portrait: boolean };
+type ImageInfo = { src: string; portrait: boolean; animated: boolean };
+
+function isAnimatedFormat(src: string): boolean {
+  return src.endsWith(".gif") || src.endsWith(".webp");
+}
 
 type RenderItem =
   | { type: "single"; image: ImageInfo }
@@ -46,8 +50,8 @@ export function ProjectScreenshots({ images, projectTitle }: ProjectScreenshotsP
         (src) =>
           new Promise<ImageInfo>((resolve) => {
             const img = new window.Image();
-            img.onload = () => resolve({ src, portrait: img.naturalHeight > img.naturalWidth });
-            img.onerror = () => resolve({ src, portrait: false });
+            img.onload = () => resolve({ src, portrait: img.naturalHeight > img.naturalWidth, animated: isAnimatedFormat(src) });
+            img.onerror = () => resolve({ src, portrait: false, animated: isAnimatedFormat(src) });
             img.src = src;
           })
       )
@@ -118,6 +122,7 @@ export function ProjectScreenshots({ images, projectTitle }: ProjectScreenshotsP
                         width={600}
                         height={800}
                         className="h-full w-full object-contain"
+                        unoptimized={info.animated}
                       />
                     </div>
                   ))}
@@ -139,6 +144,7 @@ export function ProjectScreenshots({ images, projectTitle }: ProjectScreenshotsP
                     width={portrait ? 600 : 1200}
                     height={portrait ? 800 : 900}
                     className="w-full object-contain"
+                    unoptimized={item.image.animated}
                   />
                 </div>
               </div>
@@ -158,6 +164,7 @@ export function ProjectScreenshots({ images, projectTitle }: ProjectScreenshotsP
                 width={1200}
                 height={900}
                 className="w-full"
+                unoptimized={isAnimatedFormat(image)}
               />
             </div>
           ))}
