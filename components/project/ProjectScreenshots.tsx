@@ -124,18 +124,23 @@ export function ProjectScreenshots({ images, projectTitle }: ProjectScreenshotsP
                 </div>
               );
             }
+            const portrait = item.image.portrait;
             return (
               <div
                 key={ri}
-                className="screenshot-item overflow-hidden rounded-2xl border border-border bg-surface shadow-lg"
+                className={portrait ? "flex justify-center" : ""}
               >
-                <Image
-                  src={item.image.src}
-                  alt={`${projectTitle} screenshot`}
-                  width={1200}
-                  height={900}
-                  className="w-full"
-                />
+                <div
+                  className={`screenshot-item overflow-hidden rounded-2xl border border-border bg-surface shadow-lg ${portrait ? "max-w-md" : "w-full"}`}
+                >
+                  <Image
+                    src={item.image.src}
+                    alt={`${projectTitle} screenshot`}
+                    width={portrait ? 600 : 1200}
+                    height={portrait ? 800 : 900}
+                    className="w-full object-contain"
+                  />
+                </div>
               </div>
             );
           })}
