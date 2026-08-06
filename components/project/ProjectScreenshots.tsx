@@ -128,10 +128,10 @@ export function ProjectScreenshots({ images, projectTitle }: ProjectScreenshotsP
             return (
               <div
                 key={ri}
-                className={portrait ? "flex justify-center" : ""}
+                className={portrait ? "grid grid-cols-1 sm:grid-cols-2" : ""}
               >
                 <div
-                  className={`screenshot-item overflow-hidden rounded-2xl border border-border bg-surface shadow-lg ${portrait ? "max-w-md" : "w-full"}`}
+                  className={`screenshot-item overflow-hidden rounded-2xl border border-border bg-surface shadow-lg ${portrait ? "" : "w-full"}`}
                 >
                   <Image
                     src={item.image.src}
