@@ -16,4 +16,5 @@ export interface Project {
     coverImage: string;
     images: string[];
     orderIndex: number;
+    projectType: "personal" | "client";
 }

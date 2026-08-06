@@ -36,6 +36,7 @@ export async function getFeaturedProjects(): Promise<Project[]> {
         coverImage: project.cover_image,
         images: project.images,
         orderIndex: project.order_index,
+        projectType: (project as any).project_type ?? "personal",
     }));
 }
 
@@ -70,6 +71,7 @@ export async function getAllProjects(): Promise<Project[]> {
         coverImage: project.cover_image,
         images: project.images,
         orderIndex: project.order_index,
+        projectType: (project as any).project_type ?? "personal",
     }));
 }
 
@@ -111,5 +113,6 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         coverImage: project.cover_image,
         images: project.images,
         orderIndex: project.order_index,
+        projectType: (project as any).project_type ?? "personal",
     };
 }

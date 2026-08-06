@@ -32,7 +32,7 @@ export function HomeProjects({ projects }: { projects: Project[] }) {
           <div className="mb-16">
             <span className="section-label projects-label">Projects</span>
             <h2 className="section-title projects-title mt-4">
-              Featured Personal Projects
+              Projects
             </h2>
           </div>
         </SectionHeaderAnimation>
@@ -58,6 +58,9 @@ export function HomeProjects({ projects }: { projects: Project[] }) {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                     </Link>
+                    <span className={`absolute top-4 left-4 z-10 rounded-full px-3 py-1 text-xs font-semibold ${project.projectType === "client" ? "bg-primary text-primary-foreground" : "border border-white/20 bg-white/10 text-white/80 backdrop-blur-sm"}`}>
+                      {project.projectType === "client" ? "Client" : "Personal"}
+                    </span>
                     <div className="project-hero-content absolute bottom-0 left-0 right-0 p-6 md:p-12">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
@@ -131,6 +134,9 @@ export function HomeProjects({ projects }: { projects: Project[] }) {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                       </Link>
+                      <span className={`absolute top-4 left-4 z-10 rounded-full px-3 py-1 text-xs font-semibold ${project.projectType === "client" ? "bg-primary text-primary-foreground" : "border border-white/20 bg-white/10 text-white/80 backdrop-blur-sm"}`}>
+                        {project.projectType === "client" ? "Client" : "Personal"}
+                      </span>
                       <div className="absolute top-4 right-4 flex gap-2 z-10">
                         {project.githubUrl && (
                           <a
