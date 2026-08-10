@@ -59,6 +59,10 @@ const jetbrainsMono = localFont({
 export const metadata: Metadata = {
   title: "Yonatan Assefa - Fullstack Developer",
   description: "Fullstack developer specializing in modern web applications",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
