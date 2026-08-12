@@ -214,7 +214,16 @@ export function AppNavigation() {
           </div>
 
           <button
-            className="ml-auto flex h-10 w-10 cursor-pointer items-center justify-center nav:hidden"
+            type="button"
+            className="ml-auto flex h-10 w-10 cursor-pointer items-center justify-center text-foreground transition-colors duration-300 hover:text-primary nav:hidden"
+            aria-label="Toggle theme"
+            onClick={toggleTheme}
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          <button
+            className="flex h-10 w-10 cursor-pointer items-center justify-center nav:hidden"
             aria-label="Toggle menu"
             onClick={() => setIsMenuOpen((v) => !v)}
           >
