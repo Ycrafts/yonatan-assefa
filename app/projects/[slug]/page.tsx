@@ -26,7 +26,7 @@ export default async function ProjectPage({
   return (
     <main className="min-h-screen bg-background pt-24 pb-20">
       <article className="mx-auto max-w-5xl px-4 md:px-8">
-        <div className="sticky top-20 z-10 bg-background pb-6">
+        <div className="relative z-10 bg-background pb-6 md:sticky md:top-20">
           <div className="mb-6">
             <span className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${project.projectType === "client" ? "bg-primary text-primary-foreground" : "border border-primary/30 bg-primary/10 text-primary"}`}>
               {project.projectType === "client" ? "Client Project" : "Personal Project"}

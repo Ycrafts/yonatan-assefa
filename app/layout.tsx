@@ -79,7 +79,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){try{var h=document.documentElement;h.classList.add('app-loading');var m=document.cookie.match(/(?:^|;\\s*)theme=(dark|light)/);var d=m?m[1]==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches;if(d)h.classList.add('dark')}catch(e){}})()",
+              "(function(){try{var h=document.documentElement;h.classList.add('app-loading');var m=document.cookie.match(/(?:^|;\\s*)theme=(dark|light)/);var d=m?m[1]==='dark':false;if(d)h.classList.add('dark')}catch(e){}})()",
           }}
         />
       </head>
