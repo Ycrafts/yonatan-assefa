@@ -76,7 +76,7 @@ export default async function ProjectPage({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-full border border-primary bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
-                Live Demo
+                View
                 <svg
                   className="h-3 w-3"
                   fill="none"

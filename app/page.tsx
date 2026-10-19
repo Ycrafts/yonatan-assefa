@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import { AppContact } from "../components/AppContact";
 import { HomeAbout } from "../components/home/HomeAbout";
 import { HomeBlogs } from "../components/home/HomeBlogs";

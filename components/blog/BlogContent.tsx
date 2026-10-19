@@ -53,6 +53,33 @@ export function BlogContent({ content }: BlogContentProps) {
     };
   }, []);
 
+  const renderInline = (text: string): React.ReactNode[] => {
+    const parts: React.ReactNode[] = [];
+    const regex = /\[([^\]]+)\]\(([^)\s]+)\)|(https?:\/\/[^\s)]+)/g;
+    let last = 0;
+    let m: RegExpExecArray | null;
+    let k = 0;
+    while ((m = regex.exec(text))) {
+      if (m.index > last) parts.push(text.slice(last, m.index));
+      const label = m[1] ?? m[3];
+      const href = m[2] ?? m[3];
+      parts.push(
+        <a
+          key={k++}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline-offset-2 hover:underline"
+        >
+          {label}
+        </a>,
+      );
+      last = m.index + m[0].length;
+    }
+    if (last < text.length) parts.push(text.slice(last));
+    return parts;
+  };
+
   // Simple markdown-like rendering
   const renderContent = () => {
     const lines = content.split("\n");
@@ -111,7 +138,7 @@ export function BlogContent({ content }: BlogContentProps) {
           <ul key={key++} className="my-4 space-y-2 pl-6">
             {listItems.map((item, idx) => (
               <li key={idx} className="list-disc text-muted-foreground">
-                {item}
+                {renderInline(item)}
               </li>
             ))}
           </ul>
@@ -121,7 +148,7 @@ export function BlogContent({ content }: BlogContentProps) {
       else if (line.trim()) {
         elements.push(
           <p key={key++} className="my-4 leading-relaxed text-muted-foreground">
-            {line}
+            {renderInline(line)}
           </p>
         );
       }

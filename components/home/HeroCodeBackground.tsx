@@ -1,7 +1,7 @@
 "use client";
 
 import { gsap } from "gsap";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 import { heroCodePythonString } from "../../data/heroCodePython";
 
@@ -163,8 +163,7 @@ export function HeroCodeBackground() {
   const solidCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const NAME_TEXT = "YONATAN ASSEFA";
-  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-  const SUB_TEXT = ROTATING_TITLES[currentTitleIndex];
+  const titleIndexRef = useRef(0);
   const maxSubLength = Math.max(...ROTATING_TITLES.map(t => t.length));
 
   const allLetters = useMemo(() => [...NAME_TEXT, ...Array.from({ length: maxSubLength }, () => "X")], [maxSubLength]);
@@ -225,6 +224,8 @@ export function HeroCodeBackground() {
     const solidSubOpacity = { value: 1 };
     let subSplitY = 0;
 
+    const getSubText = () => ROTATING_TITLES[titleIndexRef.current]!;
+
     function buildMaskUrl(cssW: number, cssH: number) {
       const tmp = document.createElement("canvas");
       const dpr = isMobile ? 1 : (window.devicePixelRatio || 1); // Force 1x on mobile
@@ -254,7 +255,7 @@ export function HeroCodeBackground() {
       const nw = Math.max(nw1, nw2);
       ctx.font = `700 ${subFontSize}px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial`;
       ctx.letterSpacing = "0.3em" as any;
-      const sw = ctx.measureText(SUB_TEXT).width;
+      const sw = ctx.measureText(getSubText()).width;
       const totalW = Math.max(nw, sw);
       textBounds.x = (cssW - totalW) / 2;
       textBounds.y = nameY - nameFontSize;
@@ -312,13 +313,14 @@ export function HeroCodeBackground() {
 
       ctx.font = `700 ${subFontSize}px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial`;
       ctx.letterSpacing = "0.3em" as any;
-      const subWidth = ctx.measureText(SUB_TEXT).width;
+      const subText = getSubText();
+      const subWidth = ctx.measureText(subText).width;
       let cursorX = (cssW - subWidth) / 2;
       const subRevealH = subFontSize * 1.4;
 
-      for (let i = 0; i < SUB_TEXT.length; i++) {
+      for (let i = 0; i < subText.length; i++) {
         const lp = letterProgress.current[NAME_TEXT.length + i]!;
-        const char = SUB_TEXT[i]!;
+        const char = subText[i]!;
         const charW = ctx.measureText(char).width;
 
         let ox = 0;
@@ -665,7 +667,7 @@ export function HeroCodeBackground() {
             ease: "power3.out",
             stagger: 0.02,
           });
-          gsap.to(letters.slice(NAME_TEXT.length, NAME_TEXT.length + SUB_TEXT.length), {
+          gsap.to(letters.slice(NAME_TEXT.length, NAME_TEXT.length + getSubText().length), {
             y: 0,
             opacity: 1,
             duration: 0.6,
@@ -685,8 +687,8 @@ export function HeroCodeBackground() {
       
       titleRotationInterval.current = setInterval(() => {
         const letters = letterProgress.current;
-        const currentSubLength = ROTATING_TITLES[currentTitleIndex].length;
-        
+        const currentSubLength = ROTATING_TITLES[titleIndexRef.current]!.length;
+
         gsap.to(letters.slice(NAME_TEXT.length, NAME_TEXT.length + currentSubLength), {
           y: -1,
           opacity: 0,
@@ -694,10 +696,10 @@ export function HeroCodeBackground() {
           ease: "power2.in",
           stagger: 0.01,
           onComplete: () => {
-            setCurrentTitleIndex((prev) => (prev + 1) % ROTATING_TITLES.length);
-            
+            titleIndexRef.current = (titleIndexRef.current + 1) % ROTATING_TITLES.length;
+
             setTimeout(() => {
-              const nextSubLength = ROTATING_TITLES[(currentTitleIndex + 1) % ROTATING_TITLES.length].length;
+              const nextSubLength = ROTATING_TITLES[titleIndexRef.current]!.length;
               letters.slice(NAME_TEXT.length, NAME_TEXT.length + maxSubLength).forEach(l => {
                 l.y = 1;
                 l.opacity = 0;
@@ -834,7 +836,7 @@ export function HeroCodeBackground() {
         titleRotationInterval.current = null;
       }
     };
-  }, [allLetters, currentTitleIndex, maxSubLength]);
+  }, [allLetters, maxSubLength]);
 
   return (
     <div className="hero-code-zone absolute inset-0" aria-hidden="true">

@@ -32,9 +32,9 @@ export function HomeAbout() {
               at the forefront of my mind.  
             </p>
             <p className="text-base leading-relaxed text-muted-foreground">
-              I practice domain-driven design, leverage proven design patterns, and follow clean code principles. 
-              For me, it's not just about making something work, it's about building systems that are maintainable, 
-              scalable, and elegant. I believe great software is thoughtfully designed from the ground up.
+              I practice domain-driven design and clean code, and I pick patterns that fit the problem. 
+              Making something work isn't enough on its own. It has to stay maintainable and scale. 
+              Good software gets designed before it gets built.
             </p>
             <p className="text-base leading-relaxed text-muted-foreground">
               I'm versatile and adapt quickly to different frameworks and technologies. Whether it's picking up 
@@ -66,7 +66,7 @@ export function HomeAbout() {
                   <span className="timeline-dot absolute -left-6 top-1.5 h-2 w-2 -translate-x-1/2 rounded-full bg-primary" />
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
                     <span className="text-sm font-semibold text-foreground">
-                      Backend Developer <span className="font-normal text-muted-foreground">— Enscaler</span>
+                      Backend Developer <span className="font-normal text-muted-foreground">· Enscaler</span>
                     </span>
                     <span className="shrink-0 text-xs text-muted-foreground">Aug 2025 - Present</span>
                   </div>
@@ -79,7 +79,7 @@ export function HomeAbout() {
                   <span className="timeline-dot absolute -left-6 top-1.5 h-2 w-2 -translate-x-1/2 rounded-full bg-border" />
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
                     <span className="text-sm font-semibold text-foreground">
-                      Backend Developer Intern <span className="font-normal text-muted-foreground">— Quantum Technologies PLC</span>
+                      Backend Developer Intern <span className="font-normal text-muted-foreground">· Quantum Technologies PLC</span>
                     </span>
                     <span className="shrink-0 text-xs text-muted-foreground">Mar 2025 - Aug 2025</span>
                   </div>

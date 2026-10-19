@@ -44,6 +44,8 @@ const skillGroups = [
   {
     category: "Mobile & Bots",
     skills: [
+      "React Native",
+      "Expo",
       "Flutter",
       "Telegram Bots",
       "Python Telegram Bot",
@@ -94,6 +96,8 @@ const techLogos: Record<string, string> = {
   "Next.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
   "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   "Flutter": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+  "React Native": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "Expo": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/expo/expo-original.svg",
   "Telegram Bots": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/telegram/telegram-original.svg",
   "Python Telegram Bot": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
   "Pyrogram Client": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",

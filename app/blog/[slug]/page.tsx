@@ -30,13 +30,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  console.log("Blog page slug:", slug);
   const blog = await getBlogBySlug(slug);
 
-  console.log("Blog result:", blog);
-
   if (!blog) {
-    console.log("Blog not found, showing 404");
     notFound();
   }
 

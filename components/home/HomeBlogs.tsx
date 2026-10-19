@@ -16,6 +16,14 @@ export async function HomeBlogs() {
         </div>
 
         <BlogsAnimation>
+          <div className="mb-8 flex justify-end">
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-primary transition-colors hover:text-primary/80"
+            >
+              View all articles →
+            </Link>
+          </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {blogs.map((blog) => (
               <Link
